@@ -24,7 +24,7 @@ public class EmployeeController {
 	EmployeeRepository employeeRepository;
 	
 	HashMap<Integer, Employee> cache = new HashMap<Integer, Employee>();
-	
+
 	@GetMapping("/msg")
 	public String getMessage() {
 		return "Hello World";
@@ -36,7 +36,6 @@ public class EmployeeController {
 	
 	// method type // POST --> Create
 	
-	// This is the create api for employee
 	@PostMapping("/createEmp")
 	public Employee createEmployee(@RequestBody Employee employee) {
 		employeeRepository.save(employee);
@@ -45,7 +44,7 @@ public class EmployeeController {
 		return cache.get(employee.employeeId);
 	}
 	
-	// This is the get api for employee
+	
 	@GetMapping("/getEmployee/{empId}")
 	public Employee getEmployee(@PathVariable int empId) {
 		// only check in cache
@@ -54,7 +53,6 @@ public class EmployeeController {
 		//return cache.get(empId);
 	}
 	
-	// This is the update api for employee
 	@PutMapping("/updateEmployee")
 	public Employee updateEmployee(@RequestBody Employee employee) {
 		Employee oldEmp = cache.get(employee.employeeId);
@@ -79,8 +77,6 @@ public class EmployeeController {
 //	public Employee deleteEmployee(@PathVariable int empId) {
 //		return cache.remove(empId);
 //	}
-
-	// This is the delete api for employee
 	@DeleteMapping("/deleteEmployee/{empId}")
 	public String deleteEmployee(@PathVariable int empId) {
 		Optional<Employee> employee = employeeRepository.findById(empId);
@@ -93,7 +89,6 @@ public class EmployeeController {
 		}
 	}
 	
-	// This is the getAll api for employee
 	@GetMapping("/getAllEmployee")
 	public List<Employee> getAllEmployee(){
 		List<Employee> employeeList = new ArrayList<>();
